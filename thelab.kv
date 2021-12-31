@@ -1,0 +1,274 @@
+WindowManager:
+    MainMenu:
+    Dungeon:
+    RisingKnee:
+    RisingKneePlay:
+
+<MainMenu>:
+    name: "main"
+    Image:
+        source: 'images/test.png'
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+
+    Image:
+        source: 'images/test2.png'
+        size_hint: None, None
+        width: "500dp"
+        height: "350dp"
+        allow_stretch: True
+        pos_hint: {"right":.6, "top":.6}
+
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "horizontal"
+            AnchorLayout:
+                anchor_x: "left"
+                anchor_y: "top"
+                padding: 20
+                Label:
+                    text: "Muscle Land!"
+                    color: (244/255, 132/255, 0, 1)
+                    font_size: 32
+                    size_hint: None, None
+                    size: 200,200
+                    canvas.after:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 2
+                            rectangle: self.x, self.y, self.width, self.height
+            AnchorLayout:
+                anchor_x: "right"
+                anchor_y: "top"
+                BoxLayout:
+                    spacing: 20
+                    padding: 20
+                    orientation: "horizontal"
+                    canvas.after:
+                        Color:
+                            rgba: 1, 0, 0, 1
+                        Line:
+                            width: 2
+                            rectangle: self.x, self.y, self.width, self.height
+                    Widget:
+                    Label:
+                        pos_hint: {"top": 1}
+                        text: "Muscle Land!"
+                        color: (244/255, 132/255, 0, 1)
+                        font_size: 32
+                        size_hint: None, None
+                        size: 200,100
+                        canvas.after:
+                            Color:
+                                rgba: 1, 0, 0, 1
+                            Line:
+                                width: 2
+                                rectangle: self.x, self.y, self.width, self.height
+                    Label:
+                        pos_hint: {"top": 1}
+                        text: "Muscle Land!"
+                        color: (244/255, 132/255, 0, 1)
+                        font_size: 32
+                        size_hint: None, None
+                        size: 200,100
+                        canvas.after:
+                            Color:
+                                rgba: 1, 0, 0, 1
+                            Line:
+                                width: 2
+                                rectangle: self.x, self.y, self.width, self.height
+        GridLayout:
+            cols: 1
+            spacing: 10
+            width: 0.5
+            size_hint_x:None
+            width: "350dp"
+            pos_hint:{'right': 1}
+
+            Button:
+                text: "Dungeon"
+                font_size: 32
+                bold: True
+
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+
+                on_release:
+                    app.root.current = "dun"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Exploration"
+                font_size: 32
+                bold: True
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+
+                on_release:
+                    app.root.current = "dun"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Mission"
+                font_size: 32
+                bold: True
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+
+                on_release:
+                    app.root.current = "dun"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Inventory"
+                font_size: 32
+                bold: True
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+
+                on_release:
+                    app.root.current = "dun"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Shop"
+                font_size: 32
+                bold: True
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+
+                on_release:
+                    app.root.current = "dun"
+                    root.manager.transition.direction = "left"
+
+
+<Dungeon>:
+    name: "dun"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "Select The Dungeon"
+            color: (244/255, 132/255, 0, 1)
+            size_hint: 1, .25
+            font_size: 32
+        Carousel:
+            size_hint: 1, 1.2
+            loop: True
+            Button:
+                text: "Rising Knee"
+                font_size: 32
+                bold: True
+                on_release:
+                    app.root.current = "knee"
+                    root.manager.transition.direction = "up"
+            Button:
+                text: "Flying jumping jack"
+                font_size: 32
+                bold: True
+            Button:
+                text: "Extreme squat"
+                font_size: 32
+                bold: True
+        GridLayout:
+            cols: 1
+            size_hint: 1, 0.25
+            Button:
+                text: "Go back"
+                font_size: 32
+                bold: True
+                background_normal: ''
+                background_color: (244/255, 132/255, 0, 1)
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "right"
+
+<RisingKnee>:
+    name: "knee"
+    Image:
+        source: 'images/Gym.jpg'
+        color: (1,1,1,0.5)
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 2
+        Button:
+            text: "Go back"
+            font_size: 32
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "dun"
+                root.manager.transition.direction = "down"
+        Label:
+            text: "Rising Knee"
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Label:
+            text: "Fight your ways through the enemy by move your knee up and down repeatedly"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Image:
+            source: 'images/test3.png'
+            anim_delay: 0.1
+
+        Label:
+            text: "* Difficulty goes here *"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+
+        Button:
+            text: "Start playing"
+            font_size: 64
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "knee_play"
+                root.manager.transition.direction = "up"
+
+<RisingKneePlay>:
+    name: "knee_play"
+    Image:
+        source: 'images/Gym.jpg'
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+    Image:
+        source: 'images/test2.png'
+        size_hint: None, None
+        width: "500dp"
+        height: "350dp"
+        allow_stretch: True
+        pos_hint: {"right":.8, "top":.6}
+    GridLayout:
+        cols: 1
+        Label:
+#            size_hint: ()
+            pos_hint_y: 0
+            text: "169"
+            color: (1, 1, 1, 1)
+            font_size: 32
+        Button:
+            size_hint: 1, .1
+            text: "Exit"
+            font_size: 24
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "knee"
+                root.manager.transition.direction = "down"
