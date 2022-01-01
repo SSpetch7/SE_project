@@ -8,8 +8,8 @@ mp_drawing = mp.solutions.mediapipe.python.solutions.drawing_utils
 mp_pose = mp.solutions.mediapipe.python.solutions.pose
 
 # Video reading
-cap = cv.VideoCapture('Videos/jump3.mp4')
-# cap = cv.VideoCapture(0)
+# cap = cv.VideoCapture('Videos/witoon.mp4')
+cap = cv.VideoCapture(0)
 
 counter = 0
 stage = None

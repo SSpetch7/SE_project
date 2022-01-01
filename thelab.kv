@@ -1,146 +1,169 @@
+#:kivy 2.0
+
 WindowManager:
     MainMenu:
     Dungeon:
     RisingKnee:
     RisingKneePlay:
 
+
+<Button>:
+    background_normal: ''
+    background_color: (244/255, 132/255, 0, 1)
+    font_name: "Montserrat/Montserrat-Bold.ttf"
+
+<MenuButton@Button>:
+    background_color: (0, 0, 0, 0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (244/255, 132/255, 0, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [6,0,0,6]
+
+
+
 <MainMenu>:
     name: "main"
     Image:
         source: 'images/test.png'
-        # pos: self.pos
+        pos: self.pos
         size_hint: None, None
         size: root.size
         allow_stretch: True
         keep_ratio: False
-
-    Image:
-        source: 'images/test2.png'
-        size_hint: None, None
-        width: "500dp"
-        height: "350dp"
-        allow_stretch: True
-        pos_hint: {"right":.6, "top":.6}
-
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            size_hint_y: 0.25
             orientation: "horizontal"
             AnchorLayout:
+                canvas.after:
+                    Color:
+                        rgba: (1,0,0,1)
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
                 anchor_x: "left"
                 anchor_y: "top"
-                padding: 20
-                Label:
-                    text: "Muscle Land!"
-                    color: (244/255, 132/255, 0, 1)
-                    font_size: 32
-                    size_hint: None, None
-                    size: 200,200
-                    canvas.after:
-                        Color:
-                            rgba: .5, .5, .5, 1
-                        Line:
-                            width: 2
-                            rectangle: self.x, self.y, self.width, self.height
+                padding: 40
+                Button:
+                    pos_hint: {"top": 1}
+                    text: "PreAooInw za007"
+                    size_hint: 0.7, 0.8
             AnchorLayout:
                 anchor_x: "right"
                 anchor_y: "top"
+                padding: [0, 40, 40, 0]
                 BoxLayout:
                     spacing: 20
-                    padding: 20
                     orientation: "horizontal"
+                    Widget:
+                    Label:
+                        halign: "right"
+                        valign: 'middle'
+                        pos_hint: {"top": 1}
+                        text: "Gold: 9999"
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        font_size: 18
+                        text_size: self.size
+                        size_hint: None, 0.45
+                        width: 200
+                        canvas.before:
+                            Color:
+                                rgba: (244/255, 132/255, 0, 1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                    Label:
+                        halign: 'right'
+                        valign: 'middle'
+                        pos_hint: {"top": 1}
+                        text: "EP: 9999"
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        font_size: 18
+                        text_size: self.size
+                        size_hint: None, 0.45
+                        width: 200
+                        canvas.before:
+                            Color:
+                                rgba: (244/255, 132/255, 0, 1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                    Button:
+                        pos_hint: {"top": 1}
+                        text: "setting"
+                        size_hint: None, 0.45
+                        width: 80
+        GridLayout:
+            cols: 2
+            size_hint_y: 0.75
+            Image:
+                source: 'images/test2.png'
+                size_hint_y: None
+                height: "325dp"
+            BoxLayout:
+                orientation: "vertical"
+                padding: [0,0,0,20]
+                spacing: 20
+                MenuButton:
+                    text: "Dungeon"
+                    font_size: 32
+                    bold: True
+                    size_hint_y: 1.25
+                    on_release:
+                        app.root.current = "dun"
+                        root.manager.transition.direction = "left"
+                MenuButton:
+                    text: "Exploration"
+                    font_size: 32
+                    size_hint_x: 0.8
+                    pos_hint_x: { 'right' : 1}
+                    bold: True
                     canvas.after:
                         Color:
-                            rgba: 1, 0, 0, 1
+                            rgba: (1,0,0,1)
                         Line:
                             width: 2
                             rectangle: self.x, self.y, self.width, self.height
-                    Widget:
-                    Label:
-                        pos_hint: {"top": 1}
-                        text: "Muscle Land!"
-                        color: (244/255, 132/255, 0, 1)
-                        font_size: 32
-                        size_hint: None, None
-                        size: 200,100
-                        canvas.after:
-                            Color:
-                                rgba: 1, 0, 0, 1
-                            Line:
-                                width: 2
-                                rectangle: self.x, self.y, self.width, self.height
-                    Label:
-                        pos_hint: {"top": 1}
-                        text: "Muscle Land!"
-                        color: (244/255, 132/255, 0, 1)
-                        font_size: 32
-                        size_hint: None, None
-                        size: 200,100
-                        canvas.after:
-                            Color:
-                                rgba: 1, 0, 0, 1
-                            Line:
-                                width: 2
-                                rectangle: self.x, self.y, self.width, self.height
-        GridLayout:
-            cols: 1
-            spacing: 10
-            width: 0.5
-            size_hint_x:None
-            width: "350dp"
-            pos_hint:{'right': 1}
-
-            Button:
-                text: "Dungeon"
-                font_size: 32
-                bold: True
-
-                background_normal: ''
-                background_color: (244/255, 132/255, 0, 1)
-
-                on_release:
-                    app.root.current = "dun"
-                    root.manager.transition.direction = "left"
-            Button:
-                text: "Exploration"
-                font_size: 32
-                bold: True
-                background_normal: ''
-                background_color: (244/255, 132/255, 0, 1)
-
-                on_release:
-                    root.loadVideo()
-
-            Button:
-                text: "Mission"
-                font_size: 32
-                bold: True
-                background_normal: ''
-                background_color: (244/255, 132/255, 0, 1)
-
-                on_release:
-                    app.root.current = "dun"
-                    root.manager.transition.direction = "left"
-            Button:
-                text: "Inventory"
-                font_size: 32
-                bold: True
-                background_normal: ''
-                background_color: (244/255, 132/255, 0, 1)
-
-                on_release:
-                    app.root.current = "dun"
-                    root.manager.transition.direction = "left"
-            Button:
-                text: "Shop"
-                font_size: 32
-                bold: True
-                background_normal: ''
-                background_color: (244/255, 132/255, 0, 1)
-
-                on_release:
-                    app.root.current = "dun"
-                    root.manager.transition.direction = "left"
+                    on_release:
+                        app.root.current = "dun"
+                        root.manager.transition.direction = "left"
+                MenuButton:
+                    text: "Mission"
+                    font_size: 32
+                    size_hint_x: 0.8
+                    bold: True
+                    on_release:
+                        app.root.current = "dun"
+                        root.manager.transition.direction = "left"
+                MenuButton:
+                    text: "Inventory"
+                    font_size: 32
+                    size_hint_x: 0.8
+                    bold: True
+                    on_release:
+                        app.root.current = "dun"
+                        root.manager.transition.direction = "left"
+                MenuButton:
+                    text: "Shop"
+                    font_size: 32
+                    size_hint_x: 0.8
+                    bold: True
+                    on_release:
+                        app.root.current = "dun"
+                        root.manager.transition.direction = "left"
 
 
 <Dungeon>:
@@ -272,4 +295,3 @@ WindowManager:
             on_release:
                 app.root.current = "knee"
                 root.manager.transition.direction = "down"
-                
