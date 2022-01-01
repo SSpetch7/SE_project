@@ -9,7 +9,7 @@ mp_drawing = mp.solutions.mediapipe.python.solutions.drawing_utils
 mp_pose = mp.solutions.mediapipe.python.solutions.pose
 
 # Video reading
-cap = cv.VideoCapture('Videos/IMG_1115.MOV')
+cap = cv.VideoCapture('Videos/squat.MOV')
 # cap = cv.VideoCapture(0)
 
 counter = 0
@@ -19,8 +19,8 @@ isSpawn = False
 haveMon = False
 monster_Arr = []
 total_time = None
-clear_time = None
-reward_rank = None
+clear_time = 0
+reward_rank = 'playing'
 
 # Level modifier
 level = 'beginner'
@@ -235,6 +235,8 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             # Leg_gesture    
             status = leg_gesture(hipAngleL, hipAngleR, kneeAngleL, kneeAngleR)
 
+            
+
             # Hand Gesture     
             status2 = hand_gesture(elbowAngleL, elbowAngleR, shoulderAngleL, shoulderAngleR)
 
@@ -278,8 +280,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 counter += 1
                 attack(monster_Arr)
 
-            print(total_monster)
-
             # Monster display
             for index in range(0, len(monster_Arr)):
                 center_pos = (monster_Arr[index]['x'], monster_Arr[index]['y'])
@@ -298,12 +298,14 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             cv.putText(img, 'Stage: ' + str(stage), (20,80), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA) 
             cv.putText(img, 'Leg: ' + str(status), (20,120), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
             cv.putText(img, 'Hand: ' + str(status2), (20,160), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)  
-            # cv.putText(img, err, (20,200), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
-            # cv.putText(img, 'IntervalL: ' + str(intervalL), (20,240), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
-            # cv.putText(img, 'IntervalR: ' + str(intervalR), (20,280), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
+            cv.putText(img, err, (20,200), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
+            cv.putText(img, 'IntervalL: ' + str(intervalL), (20,240), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
+            cv.putText(img, 'IntervalR: ' + str(intervalR), (20,280), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
             cv.putText(img, 'Timer: ' + str(int(timer)) + 's', (20,320), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
             cv.putText(img, 'Clear time: ' + str(int(clear_time)) + 's', (20,360), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
             cv.putText(img, 'Reward rank: ' + str(reward_rank), (20,400), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1, cv.LINE_AA)
+
+            print(kneeAngleL)
 
             # Output Angle
             cv.putText(img, str(int(hipAngleL)),

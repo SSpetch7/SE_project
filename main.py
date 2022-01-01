@@ -4,10 +4,19 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.uix.label import Label
+import cv2 as cv
 
 class MainMenu(Screen):
-    pass
+    def loadVideo(self):
+        self.capture = cv.VideoCapture('Videos/jump.mp4')
+        while self.capture.isOpened():
+            ret, frame = self.capture.read()
+            self.frame = frame
+            
+            cv.imshow('Squat', self.frame)
 
+            if cv.waitKey(20) & 0xFF == ord('d'):
+                break
 
 class Dungeon(Screen):
     pass
@@ -24,11 +33,10 @@ class RisingKneePlay(Screen):
 class WindowManager(ScreenManager):
     pass
 
-
 kv = Builder.load_file('thelab.kv')
 
-
 class TheLabApp(App):
+    
     def build(self):
         Window.clearcolor = (1, 1, 1, 1)
         return kv

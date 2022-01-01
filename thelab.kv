@@ -8,7 +8,7 @@ WindowManager:
     name: "main"
     Image:
         source: 'images/test.png'
-        pos: self.pos
+        # pos: self.pos
         size_hint: None, None
         size: root.size
         allow_stretch: True
@@ -109,8 +109,8 @@ WindowManager:
                 background_color: (244/255, 132/255, 0, 1)
 
                 on_release:
-                    app.root.current = "dun"
-                    root.manager.transition.direction = "left"
+                    root.loadVideo()
+
             Button:
                 text: "Mission"
                 font_size: 32
@@ -272,3 +272,4 @@ WindowManager:
             on_release:
                 app.root.current = "knee"
                 root.manager.transition.direction = "down"
+                
