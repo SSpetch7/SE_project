@@ -8,8 +8,8 @@ mp_drawing = mp.solutions.mediapipe.python.solutions.drawing_utils
 mp_pose = mp.solutions.mediapipe.python.solutions.pose
 
 # Video reading
-# cap = cv.VideoCapture('Videos/witoon.mp4')
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture('Videos/witoon.mp4')
+# cap = cv.VideoCapture(0)
 
 counter = 0
 stage = None
@@ -22,8 +22,8 @@ clear_time = 0
 reward_rank = 'playing'
 
 # Level modifier
-# level = 'beginner'
-level = 'intermediate'
+level = 'beginner'
+# level = 'intermediate'
 # level = 'advance'
 
 def calculate_angle(first, mid, end):
@@ -48,7 +48,7 @@ def detect_jump(leg_status, hand_status):
     return res
 
 def detect_stand(aL, aR, bL, bR, cL, cR, dL, dR):
-    if aL>150 and aR>150 and bL<10 and bR<10 and cL>165 and cR>165 and dL>165 and dR>165:
+    if aL>150 and aR>150 and bL<40 and bR<40 and cL>165 and cR>165 and dL>165 and dR>165:
         res = True
     else:
         res = False
@@ -62,7 +62,7 @@ def leg_gesture(cL, cR, dL, dR):
     return res
 
 def hand_gesture(aL, aR, bL, bR):
-    if aL>130 and aR>130 and bL>130 and bR>130:
+    if aL>100 and aR>100 and bL>100 and bR>100:
         res = True
     else:
         res = False
@@ -147,7 +147,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         ret, frame = cap.read()
 
         # Rescale frame
-        frame = rescaleFrame(frame, 0.5)
+        # frame = rescaleFrame(frame, 0.5)
 
         # Recolor image
         img = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
@@ -297,6 +297,13 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             cv.putText(img, str(int(shoulderAngleR)),
                         tuple(np.multiply(shoulderR, [img.shape[1], img.shape[0]]).astype(int)),
                         cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
+
+            cv.putText(img, str(int(elbowAngleL)),
+                        tuple(np.multiply(elbowL, [img.shape[1], img.shape[0]]).astype(int)),
+                        cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
+            cv.putText(img, str(int(elbowAngleR)),
+                        tuple(np.multiply(elbowR, [img.shape[1], img.shape[0]]).astype(int)),
+                        cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)            
 
         except:
             pass
