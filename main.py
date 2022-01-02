@@ -30,6 +30,10 @@ class RisingKneePlay(Screen):
     pass
 
 
+class Setting(Screen):
+    pass
+
+
 class WindowManager(ScreenManager):
     pass
 

@@ -5,6 +5,7 @@ WindowManager:
     Dungeon:
     RisingKnee:
     RisingKneePlay:
+    Setting:
 
 
 <Button>:
@@ -15,6 +16,9 @@ WindowManager:
 <MenuButton@Button>:
     background_color: (0, 0, 0, 0)
     background_normal: ''
+    font_size: 32
+    size_hint_x: 0.9
+    bold: True
     canvas.before:
         Color:
             rgba: (244/255, 132/255, 0, 1)
@@ -23,7 +27,22 @@ WindowManager:
             pos: self.pos
             radius: [6,0,0,6]
 
-
+<CurrencyLabel@Label>:
+    halign: "right"
+    valign: 'middle'
+    pos_hint: {"top": 1}
+    color: (1, 1, 1, 1)
+    bold: True
+    font_size: 24
+    text_size: self.size
+    size_hint: None, 0.45
+    width: 200
+    canvas.before:
+        Color:
+            rgba: (244/255, 132/255, 0, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
 
 <MainMenu>:
     name: "main"
@@ -34,24 +53,30 @@ WindowManager:
         size: root.size
         allow_stretch: True
         keep_ratio: False
+        canvas.after:
+            Color:
+                rgba: (1, 1, 1, 0.2)
+            Rectangle:
+                size: self.size
+                pos: self.pos
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
-            canvas.before:
-                Color:
-                    rgba: (0, 0, 0, 1)
-                Line:
-                    width: 2
-                    rectangle: self.x, self.y, self.width, self.height
+            # canvas.before:
+            #     Color:
+            #         rgba: (0, 0, 0, 1)
+            #     Line:
+            #         width: 2
+            #         rectangle: self.x, self.y, self.width, self.height
             size_hint_y: 0.25
             orientation: "horizontal"
             AnchorLayout:
-                canvas.after:
-                    Color:
-                        rgba: (1,0,0,1)
-                    Line:
-                        width: 2
-                        rectangle: self.x, self.y, self.width, self.height
+                # canvas.after:
+                #     Color:
+                #         rgba: (1,0,0,1)
+                #     Line:
+                #         width: 2
+                #         rectangle: self.x, self.y, self.width, self.height
                 anchor_x: "left"
                 anchor_y: "top"
                 padding: 40
@@ -67,45 +92,38 @@ WindowManager:
                     spacing: 20
                     orientation: "horizontal"
                     Widget:
-                    Label:
-                        halign: "right"
-                        valign: 'middle'
-                        pos_hint: {"top": 1}
+                    CurrencyLabel:
                         text: "Gold: 9999"
-                        color: (1, 1, 1, 1)
-                        bold: True
-                        font_size: 18
-                        text_size: self.size
-                        size_hint: None, 0.45
-                        width: 200
-                        canvas.before:
-                            Color:
-                                rgba: (244/255, 132/255, 0, 1)
-                            Rectangle:
-                                size: self.size
-                                pos: self.pos
-                    Label:
-                        halign: 'right'
-                        valign: 'middle'
-                        pos_hint: {"top": 1}
+                        Image:
+                            source: 'images\Gold.png'
+                            y: self.parent.y 
+                            x: self.parent.x
+                            size: 75, 75
+                            allow_stretch: True
+                    CurrencyLabel:
                         text: "EP: 9999"
-                        color: (1, 1, 1, 1)
-                        bold: True
-                        font_size: 18
-                        text_size: self.size
-                        size_hint: None, 0.45
-                        width: 200
-                        canvas.before:
-                            Color:
-                                rgba: (244/255, 132/255, 0, 1)
-                            Rectangle:
-                                size: self.size
-                                pos: self.pos
+                        Image:
+                            source: 'images\EP.png'
+                            y: self.parent.y 
+                            x: self.parent.x
+                            size: 75, 75
+                            allow_stretch: True
                     Button:
                         pos_hint: {"top": 1}
-                        text: "setting"
+                        # text: self.state
                         size_hint: None, 0.45
                         width: 80
+                        background_color: (0, 0, 0, 0)
+                        background_down: 'images\Cog2.png'
+                        on_release:
+                            app.root.current = "setting"
+                            root.manager.transition.direction = "up"
+                        Image:
+                            source: 'images\Cog.png'
+                            y: self.parent.y 
+                            x: self.parent.x
+                            size: self.parent.size
+                            allow_stretch: True
         GridLayout:
             cols: 2
             size_hint_y: 0.75
@@ -119,52 +137,40 @@ WindowManager:
                 spacing: 20
                 MenuButton:
                     text: "Dungeon"
-                    font_size: 32
-                    bold: True
-                    size_hint_y: 1.25
+                    font_size: 46
+                    size_hint_x: 1
                     on_release:
                         app.root.current = "dun"
                         root.manager.transition.direction = "left"
-                MenuButton:
-                    text: "Exploration"
-                    font_size: 32
-                    size_hint_x: 0.8
-                    pos_hint_x: { 'right' : 1}
-                    bold: True
-                    canvas.after:
-                        Color:
-                            rgba: (1,0,0,1)
-                        Line:
-                            width: 2
-                            rectangle: self.x, self.y, self.width, self.height
-                    on_release:
-                        app.root.current = "dun"
-                        root.manager.transition.direction = "left"
-                        root.loadVideo()
-                MenuButton:
-                    text: "Mission"
-                    font_size: 32
-                    size_hint_x: 0.8
-                    bold: True
-                    on_release:
-                        app.root.current = "dun"
-                        root.manager.transition.direction = "left"
-                MenuButton:
-                    text: "Inventory"
-                    font_size: 32
-                    size_hint_x: 0.8
-                    bold: True
-                    on_release:
-                        app.root.current = "dun"
-                        root.manager.transition.direction = "left"
-                MenuButton:
-                    text: "Shop"
-                    font_size: 32
-                    size_hint_x: 0.8
-                    bold: True
-                    on_release:
-                        app.root.current = "dun"
-                        root.manager.transition.direction = "left"
+                AnchorLayout:
+                    anchor_x: "right"        
+                    MenuButton:
+                        text: "Exploration"
+                        on_release:
+                            app.root.current = "dun"
+                            root.manager.transition.direction = "left"
+                            root.loadVideo()
+                AnchorLayout:
+                    anchor_x: "right"  
+                    MenuButton:
+                        text: "Mission"
+                        on_release:
+                            app.root.current = "dun"
+                            root.manager.transition.direction = "left"
+                AnchorLayout:
+                    anchor_x: "right"  
+                    MenuButton:
+                        text: "Inventory"
+                        on_release:
+                            app.root.current = "dun"
+                            root.manager.transition.direction = "left"
+                AnchorLayout:
+                    anchor_x: "right"  
+                    MenuButton:
+                        text: "Shop"
+                        on_release:
+                            app.root.current = "dun"
+                            root.manager.transition.direction = "left"
 
 
 <Dungeon>:
@@ -295,4 +301,24 @@ WindowManager:
             background_color: (244/255, 132/255, 0, 1)
             on_release:
                 app.root.current = "knee"
+                root.manager.transition.direction = "down"
+
+
+<Setting>:
+    name: "setting"
+    GridLayout:
+        cols: 1
+        Label:
+            text: "Setting"
+            color: (1, 1, 1, 1)
+            font_size: 32
+        Button:
+            size_hint: 1, .1
+            text: "Exit"
+            font_size: 24
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "main"
                 root.manager.transition.direction = "down"
