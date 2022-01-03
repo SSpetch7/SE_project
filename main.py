@@ -30,6 +30,22 @@ class RisingKneePlay(Screen):
     pass
 
 
+class Exploration(Screen):
+    pass
+
+
+class Mission(Screen):
+    pass
+
+
+class Inventory(Screen):
+    pass
+
+
+class Shop(Screen):
+    pass
+
+
 class Setting(Screen):
     pass
 
