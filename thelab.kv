@@ -5,15 +5,12 @@ WindowManager:
     Dungeon:
     RisingKnee:
     RisingKneePlay:
-<<<<<<< HEAD
     JumpingJack:
     JumpingJackPlay:
-=======
     Exploration:
     Mission:
     Inventory:
     Shop:
->>>>>>> 4736377f4e887db9644612bbdb5433de11d3a81b
     Setting:
 
 
@@ -273,7 +270,7 @@ WindowManager:
             background_normal: ''
             background_color: (244/255, 132/255, 0, 1)
             on_release:
-                app.root.current = "dun"
+                app.root.current = "dungeon"
                 root.manager.transition.direction = "down"
         Label:
             text: "Rising Knee"
@@ -360,7 +357,7 @@ WindowManager:
             background_normal: ''
             background_color: (244/255, 132/255, 0, 1)
             on_release:
-                app.root.current = "dun"
+                app.root.current = "dungeon"
                 root.manager.transition.direction = "down"
         Label:
             text: "Flying Jumping Jack"
@@ -394,7 +391,7 @@ WindowManager:
                 root.manager.transition.direction = "up"
 
 
-<JukmpingJackPlay>:
+<JumpingJackPlay>:
     name: "jack_play"
     Image:
         source: 'images/Gym.jpg'
@@ -413,7 +410,6 @@ WindowManager:
     GridLayout:
         cols: 1
         Label:
-#            size_hint: ()
             pos_hint_y: 0
             text: "169"
             color: (1, 1, 1, 1)
