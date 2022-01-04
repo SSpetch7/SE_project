@@ -30,6 +30,13 @@ class RisingKneePlay(Screen):
     pass
 
 
+class JumpingJack(Screen):
+    pass
+
+
+class JumpingJackPlay(Screen):
+    pass
+
 class Setting(Screen):
     pass
 

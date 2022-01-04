@@ -5,6 +5,8 @@ WindowManager:
     Dungeon:
     RisingKnee:
     RisingKneePlay:
+    JumpingJack:
+    JumpingJackPlay:
     Setting:
 
 
@@ -198,6 +200,9 @@ WindowManager:
                 text: "Flying jumping jack"
                 font_size: 32
                 bold: True
+                on_release: 
+                    app.root.current = 'jack'
+                    root.manager.transition.direction = "up"
             Button:
                 text: "Extreme squat"
                 font_size: 32
@@ -303,7 +308,96 @@ WindowManager:
                 app.root.current = "knee"
                 root.manager.transition.direction = "down"
 
+<JumpingJack>:
+    name: "jack"
+    Image:
+        source: 'images/Gym.jpg'
+        color: (1,1,1,0.5)
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
 
+    GridLayout:
+        cols: 2
+        Button:
+            text: "Go back"
+            font_size: 32
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "dun"
+                root.manager.transition.direction = "down"
+        Label:
+            text: "Flying Jumping Jack"
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Label:
+            text: "Eliminate enemies by Jumping up, spreading your feet and bringing both hands together above your head"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Image:
+            source: 'images/dun-JumpingJack.png'
+            anim_delay: 0.1
+
+        Label:
+            text: "* Difficulty goes here *"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+
+        Button:
+            text: "Start playing"
+            font_size: 64
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "jack_play"
+                root.manager.transition.direction = "up"
+
+
+<JukmpingJackPlay>:
+    name: "jack_play"
+    Image:
+        source: 'images/Gym.jpg'
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+    Image:
+        source: 'images/test2.png'
+        size_hint: None, None
+        width: "500dp"
+        height: "350dp"
+        allow_stretch: True
+        pos_hint: {"right":.8, "top":.6}
+    GridLayout:
+        cols: 1
+        Label:
+#            size_hint: ()
+            pos_hint_y: 0
+            text: "169"
+            color: (1, 1, 1, 1)
+            font_size: 32
+        Button:
+            size_hint: 1, .1
+            text: "Exit"
+            font_size: 24
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "jack"
+                root.manager.transition.direction = "down"
+
+    
 <Setting>:
     name: "setting"
     GridLayout:
