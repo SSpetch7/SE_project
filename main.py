@@ -30,7 +30,6 @@ class RisingKneePlay(Screen):
     pass
 
 
-<<<<<<< HEAD
 class JumpingJack(Screen):
     pass
 
@@ -38,7 +37,6 @@ class JumpingJack(Screen):
 class JumpingJackPlay(Screen):
     pass
 
-=======
 class Exploration(Screen):
     pass
 
@@ -55,7 +53,6 @@ class Shop(Screen):
     pass
 
 
->>>>>>> 4736377f4e887db9644612bbdb5433de11d3a81b
 class Setting(Screen):
     pass
 
