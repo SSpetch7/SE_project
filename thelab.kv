@@ -7,6 +7,8 @@ WindowManager:
     RisingKneePlay:
     JumpingJack:
     JumpingJackPlay:
+    ExtremeSquat:
+    ExtremeSquatPlay:
     Exploration:
     Mission:
     Inventory:
@@ -237,6 +239,9 @@ WindowManager:
                 text: "Extreme squat"
                 font_size: 32
                 bold: True
+                on_release: 
+                    app.root.current = 'squat'
+                    root.manager.transition.direction = "up"
         GridLayout:
             cols: 1
             size_hint: 1, 0.25
@@ -425,7 +430,95 @@ WindowManager:
                 app.root.current = "jack"
                 root.manager.transition.direction = "down"
 
-    
+<ExtremeSquat>:
+    name: "squat"
+    Image:
+        source: 'images/Gym.jpg'
+        color: (1,1,1,0.5)
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 2
+        Button:
+            text: "Go back"
+            font_size: 32
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "dungeon"
+                root.manager.transition.direction = "down"
+        Label:
+            text: "Extreme squat"
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Label:
+            text: "The right squat will help you eliminate your enemies faster"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+        Image:
+            source: 'images/dun-Squat.jpg'
+            anim_delay: 0.1
+
+        Label:
+            text: "* Difficulty goes here *"
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: (0, 0, 0, 1)
+            font_size: 32
+
+        Button:
+            text: "Start playing"
+            font_size: 64
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "squat_play"
+                root.manager.transition.direction = "up"
+
+
+<ExtremeSquatPlay>:
+    name: "squat_play"
+    Image:
+        source: 'images/Gym.jpg'
+        pos: self.pos
+        size_hint: None, None
+        size: root.size
+        allow_stretch: True
+        keep_ratio: False
+    Image:
+        source: 'images/test2.png'
+        size_hint: None, None
+        width: "500dp"
+        height: "350dp"
+        allow_stretch: True
+        pos_hint: {"right":.8, "top":.6}
+    GridLayout:
+        cols: 1
+        Label:
+            pos_hint_y: 0
+            text: "169"
+            color: (1, 1, 1, 1)
+            font_size: 32
+        Button:
+            size_hint: 1, .1
+            text: "Exit"
+            font_size: 24
+            bold: True
+            background_normal: ''
+            background_color: (244/255, 132/255, 0, 1)
+            on_release:
+                app.root.current = "squat"
+                root.manager.transition.direction = "down"
+
+   
 <Exploration>:
     name: "exploration"
     Label:

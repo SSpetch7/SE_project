@@ -37,6 +37,15 @@ class JumpingJack(Screen):
 class JumpingJackPlay(Screen):
     pass
 
+
+class ExtremeSquat(Screen):
+    pass
+
+
+class ExtremeSquatPlay(Screen):
+    pass
+
+
 class Exploration(Screen):
     pass
 
