@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.uix.label import Label
 import cv2 as cv
-
+# test
 class MainMenu(Screen):
     def loadVideo(self):
         self.capture = cv.VideoCapture('Videos/jump.mp4')
